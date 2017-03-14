@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    归档: 2017
+  
+</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Project Gearbox">
+<meta property="og:url" content="http://www.project-gearbox.net/archives/2017/index.html">
+<meta property="og:site_name" content="Project Gearbox">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Project Gearbox">
+
+
+  <link rel="alternative" href="/atom.xml" title="Project Gearbox" type="application/atom+xml">
+
+
+
+  <link rel="icon" href="/favicon.png">
+
+
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body
+  
+  >
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">Project Gearbox</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">Project Gearbox</a></h1>
+    
+    <div class="info">
+      <div class="content">
+        
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/"><img src="/img/GB-icon.png"></a>
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li>
+              <a href="/zh-cn/" title="主页">主页</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li class="category-list-container">
+                <a href="javascript:;">博客</a>
+                <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/zh-cn/categories/devblog/">devblog</a><span class="category-list-count">3</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+              <a href="/zh-cn/media/index.html" title="媒体">媒体</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+              <a href="/zh-cn/about/index.html" title="关于">关于</a>
+              </li>
+            
+          
+        </ul>
+      
+      <ul class="nav">
+      <br><br><br><br>
+      <li class="tag-list-container">
+          <a href="/zh-cn/index.html" class="lang-select">简体中文</a>
+          <a href="/en/index.html" class="lang-select">English</a>
+      </li>    
+      </ul>
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          
+
+  
+  
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <h1><a href="/archives/2017" class="archive-year">2017</a></h1>
+        </div>
+        <div class="post-list">
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/zh-cn/2017/devblog-2/" >
+  开发日志 2# - GearBox游戏循环的一些构建
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/zh-cn/2017/devblog-2/"><span class="article-date">
+  2017-03-14
+</span>
+</a>
+        
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/zh-cn/categories/devblog/">devblog</a></li></ul>
+	</span>
+
+
+        
+
+      </div>
+      <div class="article-entry">
+        
+          <p>我是猫，或者叫我Nolife_M，或者随便什么……是这个项目的主美兼策划。由于我和狼约好了要轮流糟蹋这个博客，所以我只好上来写东西了。</p>
+<p>GearBox算是个多灾多难的项目，一方面随着我们个人能力的增长（daotui）而不断发生设定重构，一方面国内手游、Steam绿光取消等大新闻层出不穷。<br>但GearBox<strong>自动卷轴动作跑酷游戏</strong>的基调始终没有变过，并且在近日最终迎来了一个稳定的形态。</p>
+<p>说到跑酷自然就想到各式各样的地形和障碍，再配合上一些战斗要素，不断地跑酷和战斗，构成了GearBox最基本的游戏循环。无论是陷阱、箱子、怪物等等要素，实际上都可以抽象为“障碍”，玩的过程就是应对障碍的过程。</p>
+<p>在这个基础上，我们进一步推导出，玩家循环构建的成功与否，取决于：</p>
+<ol>
+<li><p>障碍种类的合理设置：障碍的种类不宜过少，以免产生重复感；也不宜过多，导致玩家的学习成本上升。障碍会具有几种基本的形态，在游戏的初期就展示给玩家，再随着进程的推进慢慢地出现一些变化。</p>
+</li>
+<li><p>数种障碍的排布：障碍的排布会遵循“障碍组”的理念，将数种障碍合理排布在一起，构成一个小的循环组。相对于随机而连续地丢入大量障碍，这种做法或许更有利于我们把控游戏的节奏。</p>
+</li>
+<li><p>足够有趣和多样的障碍互动形式：障碍的互动形式不应该限于1-2种。玩家新鲜感的来源，如果只依赖于放出“新的障碍”，很容易使游戏变成纯粹的内容堆砌。<br>我们尝试营造这样一种体验：随着角色的成长和技术的熟练，玩家会探索出同一障碍更多样的互动形式，从而产生“哦！原来还能这样！”的感受。</p>
+</li>
+</ol>
+<p>在这三点的的基础上，我们将尝试构造一个有趣而具有深度的“跑酷箱庭”，以精巧的设计，而非繁多的内容来构成游戏体验。</p>
+<p>希望游戏正式放出的那一天早日到来，也希望我们能真正构造出自由奔跑的乐趣~</p>
+
+        
+      </div>
+    </div>
+
+  
+
+  
+  
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/en/2017/devblog-1/" >
+  Devblog 1# - Game Intro &amp; Progress Report
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/en/2017/devblog-1/"><span class="article-date">
+  2017-03-06
+</span>
+</a>
+        
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/en/categories/devblog/">devblog</a></li></ul>
+	</span>
+
+
+        
+
+      </div>
+      <div class="article-entry">
+        
+          <p>Hi there! I’m WeAthFolD, the main programmer of the project, also in charge of part of the game design. In this devblog I will introduce our game idea and mechanics, also giving a progress report about how we are doing currently.</p>
+<p>This game, currently called Project Gearbox, is a game about parkour and action. Player will wander in a maze-like procedurally generated city and engage various monsters and boses, while revealing the secret of the city.</p>
+<p>Here is a concept drawn by our artist, Nolife_M:</p>
+<p><img src="/img/concept-0.jpg" alt=""></p>
+<p>We have made several prototypes to test and nail down the basic gameplay. We want this game to be an intense and flow-like experience, where player continiously run and fight without long halt —— An infinite runner flavor with the mix of action game.</p>
+<p>In last week I finished the basic player controller, so the player is able to roam in the environment and climb the obstacles using basic parkour movements such as speed vault and wall push ups. While Nolife working on more player actions such as attack actions and combos.</p>
+<p><img src="/img/player-combo-preview.gif" alt=""><br><img src="/img/prototype-1.gif" alt=""></p>
+<p>Next week will be a very busy one. We have to make some monsters to test fight mechanisms, and make some basic levels. A whole load of work! So see you next week &gt;)</p>
+
+        
+      </div>
+    </div>
+
+  
+
+  
+  
+    
+  
+
+    <div class="post-list-item article">
+      <h3 class="article-header">
+        <a href="/zh-cn/2017/devblog-1/" >
+  开发日志 1# - 游戏介绍 &amp; 进度汇报
+</a>
+
+      </h3>
+      
+
+      <div class="article-info">
+        <a href="/zh-cn/2017/devblog-1/"><span class="article-date">
+  2017-03-06
+</span>
+</a>
+        
+	<span class="article-category tagcloud">
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/zh-cn/categories/devblog/">devblog</a></li></ul>
+	</span>
+
+
+        
+
+      </div>
+      <div class="article-entry">
+        
+          <p>Hi！我是WeAthFolD，是这个项目的主程序，也负责一部分的游戏策划。在这篇（也是第一篇）开发日志中我会介绍我们的游戏想法和机制，以及简单的说明一下我们当前的进度。</p>
+<p>这个游戏的代号名是Gearbox，它是一个关于跑酷和动作的游戏。玩家会在一个巨大的随机生成的城市中探索，和各种怪物、boss战斗，并且一步一步揭开这个城市的真正面目。</p>
+<p>这是我们的美术，Nolife_M的一幅概念图：<br><img src="/img/concept-0.jpg" alt=""></p>
+<p>在之前，我们已经做了好几个原型来确定基本的游戏玩法。我们想要让这个游戏提供紧张的、心流一样的游戏体验，玩家在其中一直奔跑战斗而不会停顿太久——就像无限奔跑类游戏和动作类游戏的结合。</p>
+<p>上周我完成了基本的玩家控制器，这样玩家就可以在环境中行动并且使用一些基本跑酷动作（速跳，蹬墙上墙，金刚跳）翻越障碍了。我们的美术则继续完成更多的玩家动作，例如攻击动作和combo。</p>
+<p><img src="/img/player-combo-preview.gif" alt=""><br><img src="/img/prototype-1.gif" alt=""></p>
+<p>接下来几周将会非常的繁忙。我们会制作几个怪物来测试战斗机制，也制作一些具体的关卡来替换现在的测试素材。下周见！ &gt;)</p>
+
+        
+      </div>
+    </div>
+
+  
+
+
+
+
+
+
+          <div class="main-footer">
+  
+    © 2017 Project Gearbox - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>
