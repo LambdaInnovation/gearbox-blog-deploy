@@ -55,7 +55,7 @@
   border-radius: 2px;
 }
 .sidebar .lang-select {
-  color: #dcbf87 !important;
+  color: #ddd !important;
   font-size: 12px !important;
 }
 .sidebar .nav {
@@ -114,7 +114,7 @@
 .sidebar .archive-list .archive-list-item a {
   width: 80%;
   display: inline-block;
-  color: #86a87f;
+  color: #98a4ab;
 }
 .sidebar .category-list .category-list-item a:hover,
 .sidebar .tag-list .category-list-item a:hover,
